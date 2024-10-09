@@ -6,6 +6,7 @@ import Register from './pages/register';
 import Dashboard from './pages/Dashboard';
 import UserProfile from './pages/UserProfile';
 import BudgetingPage from './pages/BudgetPage';
+import HelpFAQPage from './pages/HelpFaqPage';
 
 const App = () => {
     return (
@@ -16,6 +17,7 @@ const App = () => {
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/profile" element={<UserProfile />} />
                 <Route path="/budget" element={<BudgetingPage/>}/>
+                <Route path="/Help" element={<HelpFAQPage/>}/>
             </Routes>
         </Router>
     );
