@@ -1,106 +1,101 @@
 import React, { useState } from 'react';
-import { Container, Typography, Accordion, AccordionSummary, AccordionDetails, List, ListItem, ListItemText } from '@mui/material';
+import { Container, Typography, Accordion, AccordionSummary, AccordionDetails, Box, Button } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Lottie from 'react-lottie';
+import animationData from '../animations/help-animation.json'; // Importing your Lottie animation
+import './HelpFaqPage.css';  // Import the CSS for the hover effect
 
-const HelpFAQPage = () => {
-    // State to manage expanded accordion panels
+
+const HelpFaqPage = () => {
     const [expanded, setExpanded] = useState(false);
 
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
     };
 
+    // Lottie animation configuration
+    const defaultOptions = {
+        loop: true,
+        autoplay: true,
+        animationData: animationData, // This is the imported JSON animation
+        rendererSettings: {
+            preserveAspectRatio: 'xMidYMid slice',
+        },
+    };
+
     return (
-        <Container maxWidth="md" style={{ marginTop: '40px' }}>
-            <Typography variant="h4" gutterBottom>
+        <Container maxWidth="lg" style={{ marginTop: '20px', position: 'relative' }}>
+            {/* Wider and Opaque 3D Background Animation */}
+            <div style={{
+                position: "absolute", 
+                top: 0, 
+                left: 0,
+                marginTop: "200px", 
+                width: '100%', 
+                height: '100%', 
+                zIndex: -1, 
+                opacity: 0.55, // Set the opacity level here
+                display: 'flex', 
+                justifyContent: 'center', // Center the animation
+                alignItems: 'center',
+                overflow: 'hidden' // Ensure the animation doesn't go out of bounds
+            }}>
+                <Lottie 
+                    options={defaultOptions} 
+                    height={500} // Adjust height as needed
+                    width={1200} // Adjust width for a wider animation
+                />
+            </div>
+
+            {/* Help Page Header */}
+            <Typography variant="h3" gutterBottom style={{ textAlign: 'center', fontWeight: 'bold' }}>
                 Help & FAQ
             </Typography>
-            <Typography variant="body1" gutterBottom>
-                Welcome to the Help and FAQ section! Here you can find answers to common questions and troubleshooting tips for using the application.
-            </Typography>
 
-            {/* FAQ Section */}
-            <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                    <Typography variant="h6">How do I create an account?</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <Typography variant="body1">
-                        To create an account, click on the 'Sign Up' button located on the login page. Fill out the required fields including your name, email, and password. After submitting the form, you'll receive a confirmation email. Click the link in the email to activate your account.
-                    </Typography>
-                </AccordionDetails>
-            </Accordion>
+            <Box my={4}>
+                {/* FAQ Accordions */}
+                <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+                    <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1-content" id="panel1-header">
+                        <Typography variant="h6">How do I use the application?</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <Typography>
+                            You can navigate through the dashboard to access different features such as budgeting, transaction tracking, and user profile settings. Each section is designed to provide intuitive access to your financial data.
+                        </Typography>
+                    </AccordionDetails>
+                </Accordion>
 
-            <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                    <Typography variant="h6">How do I reset my password?</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <Typography variant="body1">
-                        If you've forgotten your password, go to the login page and click on 'Forgot Password'. Enter your email address, and you'll receive a link to reset your password. Follow the instructions in the email to create a new password.
-                    </Typography>
-                </AccordionDetails>
-            </Accordion>
+                <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
+                    <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel2-content" id="panel2-header">
+                        <Typography variant="h6">How do I set up my budget?</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <Typography>
+                            You can set your budget by going to the Budgeting page. From there, select the category you want to budget for, and input the amount. The progress bars will help you track your spending.
+                        </Typography>
+                    </AccordionDetails>
+                </Accordion>
 
-            <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                    <Typography variant="h6">How do I set a budget?</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <Typography variant="body1">
-                        Navigate to the 'Budgeting' page from the dashboard. You can create a new budget by entering the category name and the amount you'd like to allocate. Once created, you can track your spending in real-time and see how much of your budget remains.
-                    </Typography>
-                </AccordionDetails>
-            </Accordion>
+                <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
+                    <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel3-content" id="panel3-header">
+                        <Typography variant="h6">What if I forget my password?</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <Typography>
+                            You can reset your password by going to the login page and selecting "Forgot Password." You will be prompted to enter your email and follow the instructions sent to you.
+                        </Typography>
+                    </AccordionDetails>
+                </Accordion>
+            </Box>
 
-            <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                    <Typography variant="h6">Why can't I see my recent transactions?</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <Typography variant="body1">
-                        If you can't see recent transactions, make sure your internet connection is stable. If the problem persists, log out and log back in. If this doesn't resolve the issue, check the 'Transaction History' page or contact support for further assistance.
-                    </Typography>
-                </AccordionDetails>
-            </Accordion>
-
-            <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')}>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                    <Typography variant="h6">How do I switch between light and dark mode?</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <Typography variant="body1">
-                        You can switch between light and dark mode from the 'User Profile' page. There is a toggle switch labeled 'Dark Mode'—enable it to switch to dark mode, or disable it to return to light mode.
-                    </Typography>
-                </AccordionDetails>
-            </Accordion>
-
-            <Accordion expanded={expanded === 'panel6'} onChange={handleChange('panel6')}>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                    <Typography variant="h6">Troubleshooting: What to do if the app is not loading?</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <Typography variant="body1">
-                        If the app is not loading properly, try the following troubleshooting steps:
-                    </Typography>
-                    <List>
-                        <ListItem>
-                            <ListItemText primary="1. Check your internet connection." />
-                        </ListItem>
-                        <ListItem>
-                            <ListItemText primary="2. Clear your browser cache and cookies." />
-                        </ListItem>
-                        <ListItem>
-                            <ListItemText primary="3. Ensure you’re using an up-to-date browser version." />
-                        </ListItem>
-                        <ListItem>
-                            <ListItemText primary="4. If the issue persists, contact our support team for assistance." />
-                        </ListItem>
-                    </List>
-                </AccordionDetails>
-            </Accordion>
+            {/* Contact Support Button with 3D Effect */}
+            <Box display="flex" justifyContent="center" my={4}>
+                <Button variant="contained" color="primary" className="hover-button">
+                    Contact Support
+                </Button>
+            </Box>
         </Container>
     );
 };
 
-export default HelpFAQPage
+export default HelpFaqPage;
