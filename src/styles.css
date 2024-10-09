@@ -1,0 +1,71 @@
+/* styles.css or registration.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4; /* Light background color */
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.form-container {
+    background-color: #ffffff; /* White background for form */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    width: 100%;
+    max-width: 400px; /* Limit width for aesthetics */
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 1.5rem; /* Space below title */
+    color: #333; /* Dark color for text */
+}
+
+.input-group {
+    margin-bottom: 1rem; /* Space between input fields */
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem; /* Space between label and input */
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 4px; /* Rounded corners */
+    box-sizing: border-box; /* Include padding and border in element's total width/height */
+}
+
+button {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white;
+    border: none;
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    font-size: 1rem;
+    margin-top: 1rem; /* Space above button */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+.error-message {
+    color: red; /* Error message color */
+    font-size: 0.9rem; /* Slightly smaller font */
+    margin-top: 0.5rem; /* Space above error message */
+}
