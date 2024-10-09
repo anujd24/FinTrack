@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Typography, TextField, Button, Grid, LinearProgress, Snackbar, Alert, Card, CardContent, CardActions } from '@mui/material';
+import { Container, Typography, TextField, Button, Grid, LinearProgress, Snackbar, Alert, Card, CardContent, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 
 const BudgetingPage = () => {
     // State to manage categories and their budgets
@@ -10,6 +10,7 @@ const BudgetingPage = () => {
     ]);
 
     const [newCategory, setNewCategory] = useState({ name: '', budget: '' });
+    const [expense, setExpense] = useState({ amount: '', category: '' });
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
 
@@ -18,6 +19,15 @@ const BudgetingPage = () => {
         const { name, value } = e.target;
         setNewCategory({
             ...newCategory,
+            [name]: value,
+        });
+    };
+
+    // Handle expense input change
+    const handleExpenseChange = (e) => {
+        const { name, value } = e.target;
+        setExpense({
+            ...expense,
             [name]: value,
         });
     };
@@ -34,6 +44,28 @@ const BudgetingPage = () => {
             setNewCategory({ name: '', budget: '' });
         } else {
             setSnackbarMessage('Please fill out all fields.');
+            setOpenSnackbar(true);
+        }
+    };
+
+    // Add expense to a category
+    const handleAddExpense = () => {
+        if (expense.amount && expense.category) {
+            const updatedCategories = categories.map((category) => {
+                if (category.name === expense.category) {
+                    return {
+                        ...category,
+                        spent: category.spent + parseFloat(expense.amount),
+                    };
+                }
+                return category;
+            });
+            setCategories(updatedCategories);
+            setSnackbarMessage(`Expense of $${expense.amount} added to ${expense.category}`);
+            setOpenSnackbar(true);
+            setExpense({ amount: '', category: '' });
+        } else {
+            setSnackbarMessage('Please select a category and enter a valid amount.');
             setOpenSnackbar(true);
         }
     };
@@ -111,6 +143,47 @@ const BudgetingPage = () => {
                 style={{ marginTop: '20px' }}
             >
                 Add Category
+            </Button>
+
+            {/* Add Expense */}
+            <Typography variant="h5" style={{ marginTop: '40px' }}>
+                Add Expense
+            </Typography>
+            <Grid container spacing={3} style={{ marginTop: '20px' }}>
+                <Grid item xs={6}>
+                    <TextField
+                        label="Expense Amount"
+                        name="amount"
+                        value={expense.amount}
+                        onChange={handleExpenseChange}
+                        fullWidth
+                        type="number"
+                    />
+                </Grid>
+                <Grid item xs={6}>
+                    <FormControl fullWidth>
+                        <InputLabel>Category</InputLabel>
+                        <Select
+                            name="category"
+                            value={expense.category}
+                            onChange={handleExpenseChange}
+                        >
+                            {categories.map((category, index) => (
+                                <MenuItem key={index} value={category.name}>
+                                    {category.name}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+                </Grid>
+            </Grid>
+            <Button
+                variant="contained"
+                color='primary'
+                onClick={handleAddExpense}
+                style={{ marginTop: '20px', marginBottom: '20px'}}
+            >
+                Add Expense
             </Button>
 
             {/* Snackbar for notifications */}
