@@ -8,18 +8,21 @@ import UserProfile from './pages/UserProfile';
 import BudgetingPage from './pages/BudgetPage';
 import HelpFAQPage from './pages/HelpFaqPage';
 import IntegrationPage from './pages/IntegrationPage';
+import WelcomePage from './pages/WelcomePage';
 
 const App = () => {
     return (
         <Router>
             <Routes>
+                <Route path="/welcome" element={<WelcomePage/>}/>
                 <Route path="/login" element={<Login />} />
-                <Route path="/" element={<Register />} />
+                <Route path="/register" element={<Register />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/profile" element={<UserProfile />} />
                 <Route path="/budget" element={<BudgetingPage/>}/>
                 <Route path="/help" element={<HelpFAQPage/>}/>
                 <Route path="/integration" element={<IntegrationPage/>}/>
+                
             </Routes>
         </Router>
     );
