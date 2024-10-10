@@ -9,6 +9,7 @@ import BudgetingPage from './pages/BudgetPage';
 import HelpFAQPage from './pages/HelpFaqPage';
 import IntegrationPage from './pages/IntegrationPage';
 import WelcomePage from './pages/WelcomePage';
+import HomePage from './pages/HomePage';
 
 const App = () => {
     return (
@@ -22,7 +23,7 @@ const App = () => {
                 <Route path="/budget" element={<BudgetingPage/>}/>
                 <Route path="/help" element={<HelpFAQPage/>}/>
                 <Route path="/integration" element={<IntegrationPage/>}/>
-                
+                <Route path="/home" element={<HomePage/>}/>
             </Routes>
         </Router>
     );

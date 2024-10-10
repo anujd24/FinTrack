@@ -1,0 +1,112 @@
+/* HomePage.css */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.4s ease-in-out;
+    background-color: transparent; /* Transparent by default */
+    box-shadow: none;
+  }
+  
+  nav.scrolled {
+    background-color: #2c3e50; /* Darker on scroll */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  }
+  nav .logo {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 700;
+    color: #f39c12; /* Logo text color */
+  }
+  
+  nav .logo img {
+    width: 60px; /* Adjust the size of the logo */
+    height: auto;
+    margin-right: 10px;
+  }
+  
+/* 
+  nav .logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #094527;
+  } */
+  
+  nav ul {
+    display: flex;
+    gap: 100px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav ul li a {
+    color: #9c9032;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: large;
+    padding-bottom: 5px;
+  }
+  
+  nav ul li a:hover {
+    color: #f39c12; /* Gold highlight on hover */
+  }
+  
+  .nav-buttons {
+    display: flex;
+    gap: 10px;
+    margin-right: 30px;
+  }
+  
+  .nav-buttons button {
+    color: #fff;
+    background-color: #f39c12; /* Gold color for buttons */
+    border-color: #f39c12;
+    
+  }
+  
+  .nav-buttons button:hover {
+    background-color: #e67e22; /* Darker gold on hover */
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f7f8fa;
+    padding-top: 100px; /* Offset for the fixed navbar */
+    text-align: center;
+  }
+  
+  .text-box {
+    margin-bottom: 40px;
+    z-index: 1;
+  }
+  
+  .text-box h2 {
+    color: #2c3e50;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .text-box h5 {
+    color: #7f8c8d;
+    margin-bottom: 40px;
+  }
+  
+  .animation-container {
+    width: 100%;
+    max-width: 600px; /* Adjust max width for animation */
+    margin: 0 auto;
+  }
+  
